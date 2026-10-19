@@ -1,120 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <!-- Ensure proper scaling on mobile devices -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Beginner-Friendly Website</title>
-  <!-- Link to the external stylesheet -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Byte Bloom</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Defer loading JavaScript until after parsing the HTML -->
-  <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Site header with logo and navigation -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">MySite</div>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <div class="blob three"></div>
 
-      <!-- Button visible on small screens to toggle the nav -->
-      <button id="menu-toggle" class="menu-btn" aria-expanded="false" aria-controls="main-nav">
-        ☰
-        <span class="sr-only">Toggle navigation</span>
-      </button>
-
-      <!-- Main navigation -->
-      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main content area -->
-  <main>
-    <!-- Hero / top section -->
-    <section id="home" class="hero">
-      <div class="container hero-inner">
-        <h1>Welcome to My Simple Website</h1>
-        <p>A clean, responsive starter template made for beginners.</p>
-        <a class="btn" href="#contact">Get in Touch</a>
+  <div class="container">
+    <div class="topbar">
+      <div class="title-wrap">
+        <div class="logo">💡</div>
+        <h1>Byte Bloom</h1>
       </div>
-    </section>
+      <div class="badge">Programming Term Memory Challenge</div>
+    </div>
 
-    <!-- About section -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2>About</h2>
-        <div class="about-grid">
-          <!-- Placeholder image (could be replaced with an actual image) -->
-          <div class="about-image" aria-hidden="true">🙂</div>
-          <div>
-            <p>This sample site shows a simple layout and how to make a website responsive for phones and computers. It's built using only HTML, CSS, and a little JavaScript.</p>
-            <p>Use this as a starting point for your own projects.</p>
-          </div>
+    <div class="panel toolbar">
+      <div class="controls">
+        <label for="languageSelect">Language:</label>
+        <select id="languageSelect">
+          <option value="all">All Programming</option>
+          <option value="javascript">JavaScript</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="csharp">C#</option>
+          <option value="web">Web / General</option>
+        </select>
+        <button id="startBtn" class="primary-btn">Start Game</button>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <small>Timer</small>
+          <strong id="timer">60s</strong>
+        </div>
+        <div class="stat">
+          <small>Score</small>
+          <strong id="score">0</strong>
+        </div>
+        <div class="stat">
+          <small>Streak</small>
+          <strong id="streak">0</strong>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Projects section with simple cards -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-          <article class="card">
-            <h3>Project One</h3>
-            <p>Short description of project one. Replace this content with your own.</p>
-            <a class="card-link" href="#">Learn more</a>
-          </article>
-
-          <article class="card">
-            <h3>Project Two</h3>
-            <p>Short description of project two. This shows how cards wrap on small screens.</p>
-            <a class="card-link" href="#">Learn more</a>
-          </article>
-
-          <article class="card">
-            <h3>Project Three</h3>
-            <p>Another example project. Add images or links as you learn more HTML/CSS.</p>
-            <a class="card-link" href="#">Learn more</a>
-          </article>
+    <div class="panel game-card">
+      <div class="term-box">
+        <div>
+          <div class="term-label">Definition prompt</div>
+          <p id="term">Press “Start Game” to begin</p>
         </div>
       </div>
-    </section>
 
-    <!-- Contact section with a simple form -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2>Contact</h2>
-        <!-- The form doesn't submit to a server in this starter; JavaScript handles it -->
-        <form id="contact-form" class="contact-form" novalidate>
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" placeholder="Your name" required />
-
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" required />
-
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" placeholder="Write a short message" required></textarea>
-
-          <button type="submit" class="btn">Send Message</button>
-
-          <!-- Area where JS will show a success message -->
-          <p id="form-status" class="form-status" aria-live="polite"></p>
-        </form>
+      <div class="entry">
+        <label class="sr-only" for="answerInput">Your answer</label>
+        <input
+          id="answerInput"
+          class="answer-input"
+          type="text"
+          placeholder="Type your definition here..."
+          autocomplete="off"
+          disabled
+        />
+        <button id="submitBtn" class="submit-btn" disabled>Check</button>
       </div>
-    </section>
-  </main>
 
-  <!-- Footer with current year filled by JavaScript -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <small>&copy; <span id="year"></span> MySite — Built with HTML, CSS & JavaScript</small>
+      <div id="feedback" class="feedback" aria-live="polite">
+        Choose a language, then start the clock. Quick, accurate answers add more time and points.
+      </div>
+
+      <div id="official" class="official-definition" aria-live="polite" hidden></div>
+
+      <div class="instructions">
+        Answer as accurately as you can. Correct, fast definitions earn more score and extra time.
+      </div>
     </div>
-  </footer>
+  </div>
 
-  <!-- End of document -->
+  <script src="script.js" defer></script>
 </body>
 </html>
